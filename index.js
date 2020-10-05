@@ -1,18 +1,34 @@
 const options = ["rock", "paper", "scissors", "lizard", "spock"];
 let playerSelect = "";
 let gameSelect = "";
-let result = "";
+var result = "";
 let score = "0";
 
-$(".item").on("click", function() {
-  game($(this));
 
-  window.location.href = "score.html";
+$(".item").on("click", function() {
+  setSelection($(this));
+  game($(this));
+  setResult();
+  alertStatus();
+  console.log("-------------------------------------------------------")
+  $(".play-end").css("display", "flex");
+  $(".play-start").css("display", "none");
 
 });
 
+$(".result-box button").on("click", function(){
+  playerSelect = "";
+  gameSelect = "";
+  $(".play-end").css("display", "none");
+  $(".play-start").css("display", "block");
+  $(".scores h2").text(score);
+
+});
+
+
 function game(playerItem) {
-  setSelection(playerItem);
+
+
 
   if (playerSelect === gameSelect) {
     result = "draw";
@@ -32,12 +48,8 @@ function game(playerItem) {
     result = "something went wrong";
   }
 
-addScore();
+  addScore();
 
-alertStatus();
-
-playerSelect = "";
-gameSelect = "";
 }
 
 function setSelection(playerItem) {
@@ -58,7 +70,7 @@ function setSelection(playerItem) {
 }
 
 function alertStatus() {
-  alert("The player selected: " + playerSelect +
+  console.log("The player selected: " + playerSelect +
   "\r The game selected: " + gameSelect +
   "\r The result is: " + result +
   "\r Your score is: " + score);
@@ -73,4 +85,18 @@ function addScore(){
     nScore ++;
   }
   score = nScore.toString();
+}
+
+function setResult(){
+  var pageURL = window.location.href;
+  var lastURLSegment = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+  $(".result-box h1").text(result);
+
+  let resultItem = document.querySelectorAll(".item-large");
+  // console.log(playerSelect + " <-->"+ gameSelect);
+  resultItem[0].classList = "item-large";
+  resultItem[0].classList.add(playerSelect);
+  resultItem[1].classList = "item-large";
+  resultItem[1].classList.add(gameSelect);
+
 }
