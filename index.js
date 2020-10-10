@@ -4,6 +4,13 @@ let gameSelect = "";
 var result = "";
 let score = "0";
 
+$(".rule-button").on("click", function(){
+  $(".rules").css("display", "flex");
+});
+
+$(".rules button").on("click", function(){
+  $(".rules").css("display", "none");
+});
 
 $(".item").on("click", function() {
   setSelection($(this));
@@ -93,7 +100,7 @@ function setResult(){
   $(".result-box h1").text(result);
 
   let resultItem = document.querySelectorAll(".item-large");
-  // console.log(playerSelect + " <-->"+ gameSelect);
+
   resultItem[0].classList = "item-large";
   resultItem[0].classList.add(playerSelect);
   resultItem[1].classList = "item-large";
