@@ -7,11 +7,11 @@ let scoreID = "RPSscore";
 
 getPrevScore();
 
-$(".rule-button").on("click", function(){
+$(".rule-button").on("click", function() {
   $(".rules").css("display", "flex");
 });
 
-$(".rules button").on("click", function(){
+$(".rules button").on("click", function() {
   $(".rules").css("display", "none");
 });
 
@@ -26,7 +26,7 @@ $(".item").on("click", function() {
 
 });
 
-$(".result-box button").on("click", function(){
+$(".result-box button").on("click", function() {
   playerSelect = "";
   gameSelect = "";
   $(".play-end").css("display", "none");
@@ -35,9 +35,9 @@ $(".result-box button").on("click", function(){
 
 });
 
-$(document).on("keypress", function(key){
+$(document).on("keypress", function(key) {
   // console.log(key.key);
-  if(key.key === "0"){
+  if (key.key === "0") {
     score = "0";
     $(".scores h2").text(score);
     localStorage.setItem(scoreID, score);
@@ -52,17 +52,17 @@ function game(playerItem) {
     result = "It's a draw";
   } else if (playerSelect === "rock" && gameSelect === "paper") {
     result = "Game wins";
-  }else if (playerSelect === "rock" && gameSelect === "scissors") {
+  } else if (playerSelect === "rock" && gameSelect === "scissors") {
     result = "Player wins";
-  }else if (playerSelect === "paper" && gameSelect === "rock") {
+  } else if (playerSelect === "paper" && gameSelect === "rock") {
     result = "Player wins";
-  }else if (playerSelect === "paper" && gameSelect === "scissors") {
+  } else if (playerSelect === "paper" && gameSelect === "scissors") {
     result = "Game wins";
-  }else if (playerSelect === "scissors" && gameSelect === "rock") {
+  } else if (playerSelect === "scissors" && gameSelect === "rock") {
     result = "Game wins";
-  }else if (playerSelect === "scissors" && gameSelect === "paper") {
+  } else if (playerSelect === "scissors" && gameSelect === "paper") {
     result = "Player wins";
-  }else{
+  } else {
     result = "something went wrong";
   }
 
@@ -89,23 +89,23 @@ function setSelection(playerItem) {
 
 function alertStatus() {
   console.log("The player selected: " + playerSelect +
-  "\r The game selected: " + gameSelect +
-  "\r The result is: " + result +
-  "\r Your score is: " + score);
+    "\r The game selected: " + gameSelect +
+    "\r The result is: " + result +
+    "\r Your score is: " + score);
 
 }
 
-function addScore(){
+function addScore() {
   let nScore = parseInt(score);
-  if(result === "Game wins" && nScore > 0){
-    nScore --;
-  }else if(result === "Player wins"){
-    nScore ++;
+  if (result === "Game wins" && nScore > 0) {
+    nScore--;
+  } else if (result === "Player wins") {
+    nScore++;
   }
   score = nScore.toString();
 }
 
-function setResult(){
+function setResult() {
   var pageURL = window.location.href;
   var lastURLSegment = pageURL.substr(pageURL.lastIndexOf('/') + 1);
   var resBox = $(".result-box h1");
@@ -116,9 +116,9 @@ function setResult(){
   resultItem[0].classList.add(playerSelect);
   resultItem[1].classList = "item-large";
   resultItem[1].classList.add(gameSelect);
-  if(result === "Player wins"){
+  if (result === "Player wins") {
     resultItem[0].classList.add("winner");
-  }else if(result === "Game wins"){
+  } else if (result === "Game wins") {
     resultItem[1].classList.add("winner");
   }
   $(".scores h2").text(score);
@@ -126,18 +126,19 @@ function setResult(){
 
 }
 
-function getPrevScore(){
-  try{
+function getPrevScore() {
+  try {
     let myScr = localStorage.getItem(scoreID);
-    if(myScr !== NaN){
+    if (myScr !== NaN) {
       score = parseInt(myScr);
-      console.log("Your retrieved score is: " +score);
-      $(".scores h2").text(score);
+      console.log("Your retrieved score is: " + score);
+
+    } else {
+      score = "0";
     }
-
-
-  }catch (e){
+  } catch (e) {
     console.log(e);
+    score = "0";
   }
-
+  $(".scores h2").text(score);
 }
