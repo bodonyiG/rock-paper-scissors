@@ -127,18 +127,15 @@ function setResult() {
 }
 
 function getPrevScore() {
-  try {
-    let myScr = localStorage.getItem(scoreID);
-    if (myScr !== NaN) {
-      score = parseInt(myScr);
-      console.log("Your retrieved score is: " + score);
+  let myScr = localStorage.getItem(scoreID);
 
-    } else {
-      score = "0";
-    }
-  } catch (e) {
-    console.log(e);
+  console.log("Your retrieved score is: " + score);
+  if (myScr == Number) {
+    score = parseInt(myScr);
+
+  } else {
     score = "0";
   }
   $(".scores h2").text(score);
+
 }

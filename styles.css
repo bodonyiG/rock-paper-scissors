@@ -53,8 +53,8 @@ h1 {
 /* Play area --------------------------------------- */
 .play-start {
   width: 300px;
-  height: 50%;
   min-width: 400px;
+  min-height: 60%;
   margin: 57px auto 40px;
   position: relative;
   justify-content: center;
@@ -271,7 +271,10 @@ h1 {
 }
 
 .rule-button{
-  position: fixed;
+  position: absolute;
+  margin-right: 30px;
+  margin-left: auto;
+  margin-bottom: 30px;
   right: 20px;
   bottom: 20px;
 }
@@ -296,7 +299,7 @@ h1 {
 .attribution {
   font-size: 11px;
   text-align: center;
-  position: fixed;
+  /* position: fixed; */
   bottom: 25px;
   left:0;
   right: 0;
@@ -327,7 +330,19 @@ h1 {
     margin: 0;
   }
 
+  .rule-button{
+    position: static;
+    display: block;
+    margin: 0 0 40px 0;
+    float: none;
 
+  }
+
+  .play-start {
+    width: 80%;
+    min-width: 250px;
+    min-height: 30%;
+  }
   /* .item-large{
     margin-top: 100px;
     width: 40px;
@@ -341,11 +356,7 @@ h1 {
     min-width: 250px;
   }
 
-  .play-start {
-    width: 80%;
-    min-width: 250px;
-    height: 40%;
-  }
+
 
   .item {
     transform: scale(.8);
@@ -384,12 +395,4 @@ h1 {
   }
 
 
-
-  .rule-button{
-    display: block;
-    bottom: 50px;
-    left:0;
-    right: 0;
-    position: fixed;
-  }
 }
