@@ -35,6 +35,14 @@ $(".result-box button").on("click", function(){
 
 });
 
+$(document).on("keypress", function(key){
+  // console.log(key.key);
+  if(key.key === "0"){
+    score = "0";
+    $(".scores h2").text(score);
+    localStorage.setItem(scoreID, score);
+  }
+});
 
 function game(playerItem) {
 
@@ -121,10 +129,15 @@ function setResult(){
 function getPrevScore(){
   try{
     let myScr = localStorage.getItem(scoreID);
-    score = parseInt(myScr);
-    console.log("Your retrieved score is: " +score);
+    if(myScr !== NaN){
+      score = parseInt(myScr);
+      console.log("Your retrieved score is: " +score);
+      $(".scores h2").text(score);
+    }
+
+
   }catch (e){
     console.log(e);
   }
-  $(".scores h2").text(score);
+
 }
