@@ -97,13 +97,18 @@ function addScore(){
 function setResult(){
   var pageURL = window.location.href;
   var lastURLSegment = pageURL.substr(pageURL.lastIndexOf('/') + 1);
-  $(".result-box h1").text(result);
+  var resBox = $(".result-box h1");
+  resBox.text(result);
 
-  let resultItem = document.querySelectorAll(".item-large");
-
+  let resultItem = document.querySelectorAll(".play-end .item-large");
   resultItem[0].classList = "item-large";
   resultItem[0].classList.add(playerSelect);
   resultItem[1].classList = "item-large";
   resultItem[1].classList.add(gameSelect);
+  if(result === "player wins"){
+    resultItem[0].classList.add("winner");
+  }else if(result === "game wins"){
+    resultItem[1].classList.add("winner");
+  }
 
 }
