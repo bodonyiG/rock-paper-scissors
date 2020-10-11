@@ -3,6 +3,9 @@ let playerSelect = "";
 let gameSelect = "";
 var result = "";
 let score = "0";
+let scoreID = "RPSscore";
+
+getPrevScore();
 
 $(".rule-button").on("click", function(){
   $(".rules").css("display", "flex");
@@ -38,19 +41,19 @@ function game(playerItem) {
 
 
   if (playerSelect === gameSelect) {
-    result = "draw";
+    result = "It's a draw";
   } else if (playerSelect === "rock" && gameSelect === "paper") {
-    result = "game wins";
+    result = "Game wins";
   }else if (playerSelect === "rock" && gameSelect === "scissors") {
-    result = "player wins";
+    result = "Player wins";
   }else if (playerSelect === "paper" && gameSelect === "rock") {
-    result = "player wins";
+    result = "Player wins";
   }else if (playerSelect === "paper" && gameSelect === "scissors") {
-    result = "game wins";
+    result = "Game wins";
   }else if (playerSelect === "scissors" && gameSelect === "rock") {
-    result = "game wins";
+    result = "Game wins";
   }else if (playerSelect === "scissors" && gameSelect === "paper") {
-    result = "player wins";
+    result = "Player wins";
   }else{
     result = "something went wrong";
   }
@@ -86,9 +89,9 @@ function alertStatus() {
 
 function addScore(){
   let nScore = parseInt(score);
-  if(result === "game wins" && nScore > 0){
+  if(result === "Game wins" && nScore > 0){
     nScore --;
-  }else if(result === "player wins"){
+  }else if(result === "Player wins"){
     nScore ++;
   }
   score = nScore.toString();
@@ -105,10 +108,23 @@ function setResult(){
   resultItem[0].classList.add(playerSelect);
   resultItem[1].classList = "item-large";
   resultItem[1].classList.add(gameSelect);
-  if(result === "player wins"){
+  if(result === "Player wins"){
     resultItem[0].classList.add("winner");
-  }else if(result === "game wins"){
+  }else if(result === "Game wins"){
     resultItem[1].classList.add("winner");
+  }
+  $(".scores h2").text(score);
+  localStorage.setItem(scoreID, score);
+
+}
+
+function getPrevScore(){
+  try{
+    let myScr = localStorage.getItem(scoreID);
+    score = parseInt(myScr);
+    console.log("Your retrieved score is: " +score);
+  }catch (e){
+    console.log(e);
   }
   $(".scores h2").text(score);
 }
