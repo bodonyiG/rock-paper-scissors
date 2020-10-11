@@ -110,5 +110,5 @@ function setResult(){
   }else if(result === "game wins"){
     resultItem[1].classList.add("winner");
   }
-
+  $(".scores h2").text(score);
 }
