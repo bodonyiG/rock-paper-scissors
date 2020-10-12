@@ -129,13 +129,11 @@ function setResult() {
 function getPrevScore() {
   let myScr = localStorage.getItem(scoreID);
 
-  console.log("Your retrieved score is: " + score);
-  if (myScr == Number) {
-    score = parseInt(myScr);
+  console.log("Your retrieved score is: " + myScr);
+  if (myScr) {
+    score = myScr;
 
-  } else {
-    score = "0";
-  }
+  } 
   $(".scores h2").text(score);
 
 }
